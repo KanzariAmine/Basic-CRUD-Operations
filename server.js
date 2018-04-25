@@ -1,16 +1,18 @@
 const express     = require('express');
 const MongoClient = require('mongodb').MongoClient;
-const bpdyParser  = require('body-parser');
+const bodyParser  = require('body-parser');
 
-const app           = express();
-const port          = 8000;
+const app         = express();
+const port        = 8000;
 
-
-
-
+app.use(bodyParser.urlencoded({extended: true}))
 
 
-app.listen(port, (err) =>{
+
+
+var fun = require('./app/routers');
+fun(app, {});
+app.listen(port, () =>{
     console.log("We are live on " + port);
 });
 
